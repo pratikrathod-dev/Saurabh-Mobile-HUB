@@ -1,3 +1,4 @@
+import { shopInfo } from "../data/shopInfo";
 import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Heart, Minus, Plus, Check, ZoomIn, Share2 } from "lucide-react";
@@ -32,12 +33,12 @@ function ProductContent({ p }) {
     gallery.current?.scrollTo({left:index*gallery.current.clientWidth,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"});
   };
   const share = async () => {
-    const data = { title:p.name, text:"Take a look at "+p.name+" at Saurabh Mobile Hub", url:window.location.href };
+    const data = { title:p.name, text:"Take a look at "+p.name+` at ${shopInfo.name}`, url:window.location.href };
     if (navigator.share) { try { await navigator.share(data); return; } catch(error) { if(error.name === "AbortError") return; } }
     window.open("https://wa.me/?text="+encodeURIComponent(data.text+" "+data.url),"_blank","noopener,noreferrer");
   };
   const addProduct = () => add(p,qty,color);
-  const message = "Hi Saurabh Mobile Hub! Can you confirm price and availability for "+p.name+" ("+color+")?";
+  const message = `Hi ${shopInfo.name}! Can you confirm price and availability for `+p.name+" ("+color+")?";
   return <div className="container inner-page product-page">
     <div className="breadcrumb"><Link to="/">Home</Link><span>/</span><Link to={"/category/"+p.category}>{category?.name}</Link><span>/</span><span>{p.name}</span></div>
     <div className="product-detail">

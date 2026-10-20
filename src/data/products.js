@@ -1,3 +1,4 @@
+import { shopInfo } from "./shopInfo.js";
 // Real model photos, with the iPhone 18 Pro gallery supplied by the user.
 // See IMAGES.md and public/images/products/sources.json for provenance.
 export const products = [
@@ -34,7 +35,7 @@ export const products = [
       "Apple iPhone 18 Pro, Burgundy phone and USB-C cable box contents",
     ],
     description:
-      "Discover iPhone 18 Pro in Burgundy, with the A20 Pro chip and a 48MP Fusion Main camera featuring variable aperture. Explore the supplied product gallery, then contact Saurabh Mobile Hub to confirm the Indian variant, local pricing, and availability.",
+      `Discover iPhone 18 Pro in Burgundy, with the A20 Pro chip and a 48MP Fusion Main camera featuring variable aperture. Explore the supplied product gallery, then contact ${shopInfo.name} to confirm the Indian variant, local pricing, and availability.`,
     specs: {
       Processor: "Apple A20 Pro",
       Camera: "48MP Fusion Main camera with variable aperture",
@@ -65,7 +66,7 @@ export const products = [
       "/images/products/iphone-15-2.webp",
     ],
     description:
-      "Meet the Apple iPhone 15. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the Apple iPhone 15. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Display: "6.1–6.7 inch full-screen display",
       RAM: "8 GB",
@@ -101,7 +102,7 @@ export const products = [
       "/images/products/samsung-galaxy-s24-2.webp",
     ],
     description:
-      "Meet the Samsung Galaxy S24. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the Samsung Galaxy S24. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Display: "6.1–6.7 inch full-screen display",
       RAM: "8 GB",
@@ -138,7 +139,7 @@ export const products = [
       "/images/products/oneplus-12r-2.webp",
     ],
     description:
-      "Meet the OnePlus 12R. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the OnePlus 12R. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Display: "6.1–6.7 inch full-screen display",
       RAM: "8 GB",
@@ -174,7 +175,7 @@ export const products = [
       "/images/products/vivo-v30-2.webp",
     ],
     description:
-      "Meet the Vivo V30 5G. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the Vivo V30 5G. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Display: "6.1–6.7 inch full-screen display",
       RAM: "8 GB",
@@ -210,7 +211,7 @@ export const products = [
       "/images/products/iphone-15-pro-2.webp",
     ],
     description:
-      "Meet the Apple iPhone 15 Pro. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the Apple iPhone 15 Pro. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Display: "6.1–6.7 inch full-screen display",
       RAM: "8 GB",
@@ -247,7 +248,7 @@ export const products = [
       "/images/products/samsung-galaxy-a55-2.webp",
     ],
     description:
-      "Meet the Samsung Galaxy A55. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the Samsung Galaxy A55. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Display: "6.1–6.7 inch full-screen display",
       RAM: "8 GB",
@@ -284,7 +285,7 @@ export const products = [
       "/images/products/xiaomi-14-2.webp",
     ],
     description:
-      "Meet the Xiaomi 14. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the Xiaomi 14. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Display: "6.1–6.7 inch full-screen display",
       RAM: "8 GB",
@@ -320,7 +321,7 @@ export const products = [
       "/images/products/ipad-10th-gen-2.webp",
     ],
     description:
-      "Meet the Apple iPad 10th Gen. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the Apple iPad 10th Gen. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Type: "tablets",
       Warranty: "Manufacturer warranty where applicable",
@@ -349,7 +350,7 @@ export const products = [
     reviewCount: 157,
     images: ["/images/products/apple-20w-usb-c-adapter-1.webp"],
     description:
-      "Meet the 20W USB-C Adapter. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the 20W USB-C Adapter. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Type: "chargers cables",
       Warranty: "Manufacturer warranty where applicable",
@@ -377,7 +378,7 @@ export const products = [
     reviewCount: 206,
     images: ["/images/products/airpods-pro-2-1.webp"],
     description:
-      "Meet the Apple AirPods Pro 2. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit Saurabh Mobile Hub to explore it in person and confirm current pricing and availability.",
+      `Meet the Apple AirPods Pro 2. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
       Type: "earbuds",
       Warranty: "Manufacturer warranty where applicable",

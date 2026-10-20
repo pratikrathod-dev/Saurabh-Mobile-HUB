@@ -8,6 +8,7 @@ import "./index.css";
 import "./product-images.css";
 import "./video-reviews.css";
 import "./responsive.css";
+import "./branding.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter

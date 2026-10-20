@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { products, brands } from "../data/products";
 import { categories } from "../data/categories";
+import { shopInfo } from "../data/shopInfo";
 import { useStore } from "../context/StoreContext";
 import ProductCard from "../components/product/ProductCard";
 import ProductImage from "../components/product/ProductImage";
@@ -123,6 +124,7 @@ function Hero() {
     >
       <div className="hero-inner container">
         <div className="hero-copy" key={index}>
+          <p className="brand-eyebrow">{shopInfo.tagline}</p>
           <p className="eyebrow">
             <span className="little-line" />
             {s.eyebrow}

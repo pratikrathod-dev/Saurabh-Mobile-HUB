@@ -3,6 +3,8 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Header, Footer, FloatingActions, BottomNavigation } from "./components/layout/Layout";
 import CartDrawer from "./components/product/CartDrawer";
 import { Empty } from "./components/ui/Common";
+import Logo, { BrandLoading } from "./components/ui/Logo";
+import { pageMetadata } from "./utils/pageMetadata";
 const Home = lazy(() => import("./pages/Home"));
 const Shop = lazy(() => import("./pages/Shop"));
 const Product = lazy(() => import("./pages/Product"));
@@ -13,6 +15,11 @@ const Contact = lazy(() => import("./pages/Contact"));
 export default function App() {
   const location = useLocation();
   useEffect(() => {
+    const metadata = pageMetadata(location.pathname);
+    document.title = metadata.title;
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", metadata.title);
+    document.querySelector('meta[name="description"]')?.setAttribute("content", metadata.description);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", metadata.description);
     window.scrollTo(0, 0);
     document
       .querySelectorAll(".desktop-nav details[open]")
@@ -23,12 +30,7 @@ export default function App() {
       <Header />
       <main id="main" tabIndex={-1}>
         <Suspense
-          fallback={
-            <div className="container page-loading" role="status">
-              <span className="brand-loader" aria-hidden="true">S.</span>
-              <span>Getting your next upgrade ready…</span>
-            </div>
-          }
+          fallback={<BrandLoading />}
         >
           <div key={location.pathname} className="page-enter">
             <Routes>
@@ -43,12 +45,12 @@ export default function App() {
               <Route
                 path="*"
                 element={
-                  <Empty
+                  <><div className="not-found-brand"><Logo showTagline /></div><Empty
                     title="This page took a wrong turn."
                     text="Let’s get you back to something good."
                     action="Back to home"
                     to="/"
-                  />
+                  /></>
                 }
               />
             </Routes>

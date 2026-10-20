@@ -8,6 +8,7 @@ import { cartSubtotal, couponDiscount, validPhone } from "../utils/commerce";
 import { Empty } from "../components/ui/Common";
 import Modal from "../components/ui/Modal";
 import CartItems from "../components/product/CartItems";
+import Logo from "../components/ui/Logo";
 export default function Cart() {
   const { cart, setCart, notify } = useStore();
   const [coupon,setCoupon]=useState(""), [applied,setApplied]=useState(""), [couponError,setCouponError]=useState("");
@@ -50,6 +51,7 @@ export default function Cart() {
       </aside>
     </div>:<Empty title="Your cart is waiting for a good find."/>}
     {checkout&&<Modal title={step==="success"?"Demo complete":"Checkout"} fullScreen animated onClose={close}>
+      <div className="checkout-brand"><Logo showTagline /></div>
       <ol className="checkout-steps" aria-label="Checkout steps">{["details","review","success"].map((label,i)=><li key={label} aria-current={step===label?"step":undefined}><span>{i+1}</span>{label.charAt(0).toUpperCase()+label.slice(1)}</li>)}</ol>
       {step==="details"?<form className="checkout-form" onSubmit={review} noValidate>
         <p className="demo-notice">Frontend demo. Details are used only in this open form and are never submitted or saved.</p>

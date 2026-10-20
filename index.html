@@ -1,1 +1,27 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><meta name="theme-color" content="#111111"/><meta name="description" content="Discover smartphones and everyday accessories at Saurabh Mobile Hub, Digras. Explore our frontend store demo."/><title>Saurabh Mobile Hub — A little upgrade. A lot more possibilities.</title></head><body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#111111" />
+    <meta name="description" content="{{BRAND_DESCRIPTION}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{BRAND_NAME}}" />
+    <meta property="og:title" content="Home | {{BRAND_NAME}}" />
+    <meta property="og:description" content="{{BRAND_DESCRIPTION}}" />
+    <meta property="og:locale" content="en_IN" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Home | {{BRAND_NAME}}</title>
+    <style>
+      .brand-boot { min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; font: 14px Arial, sans-serif; color: #111111; background: #ffffff; }
+      .brand-boot img { width: 56px; height: 56px; animation: boot-pulse 1.5s ease-in-out infinite; }
+      @keyframes boot-pulse { 50% { opacity: .6; transform: scale(.96); } }
+      @media (prefers-reduced-motion: reduce) { .brand-boot img { animation: none; } }
+    </style>
+  </head>
+  <body>
+    <div id="root"><div class="brand-boot" role="status"><img src="/favicon.svg" alt="" width="56" height="56" /><span>Loading {{BRAND_NAME}}…</span></div></div>
+    <noscript>This shop preview needs JavaScript to display its catalog.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

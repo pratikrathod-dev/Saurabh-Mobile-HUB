@@ -83,6 +83,19 @@ See both asset-directory README files for the filenames and source mapping.
 
 ### Change branding
 
+The shared brand lives in `src/data/shopInfo.js`: store name, tagline, Marathi
+name, contact details and social links. `legalName` is intentionally empty until
+the owner confirms it. `Logo` in `src/components/ui/Logo.jsx` accepts
+`variant="light" | "dark"`, `showTagline` and `className`. Use the dark variant on
+dark backgrounds. Header icons are 40px on desktop and 32px on mobile; below
+380px, logos show just the icon and wordmark.
+
+`public/favicon.svg` supplies the same crisp phone mark for logos, the favicon
+and loading screens. `src/branding.css` controls spacing and variants. The
+Marathi footer uses Noto Sans Devanagari. Route titles come from
+`src/utils/pageMetadata.js`; Vite injects the shared brand into initial HTML and
+Open Graph metadata for both development and production builds.
+
 Tailwind tokens live in `tailwind.config.js`. Component CSS lives in `src/index.css`, including `--amber`, `--muted`, and `--border` variables and matching colour values. Change both the token values and matching component colours for a complete rebrand. Amber button states use dark text for contrast. Outfit is requested from Google Fonts with Arial as fallback; the application works without the font request. All product photos are local optimized WebPs. `ProductImage` provides consistent square frames, skeleton loading, and a branded error state. See `IMAGES.md`.
 
 ## Demo boundaries

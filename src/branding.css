@@ -1,0 +1,40 @@
+.brand-logo { display: inline-flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 12px; color: #111111; text-decoration: none; min-width: 0; width: fit-content; }
+.brand-lockup { display: flex; align-items: center; gap: 10px; }
+.brand-icon { display: block; width: 40px; height: 40px; flex: 0 0 40px; aspect-ratio: 1; object-fit: contain; }
+.brand-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.brand-copy strong { font-size: 28px; font-weight: 700; line-height: 1; letter-spacing: -1px; color: inherit; white-space: nowrap; }
+.brand-dot { color: #c79100; }
+.brand-submark { font-size: 10px; line-height: 1.2; font-weight: 600; letter-spacing: .35em; color: #c79100; white-space: nowrap; }
+.brand-tagline { font-size: 13px; line-height: 1.5; color: inherit; }
+.brand-logo--dark { color: #ffffff; }
+.nav-main > .brand-logo { flex: 1; }
+.nav-main .brand-icon { width: 32px; height: 32px; flex-basis: 32px; }
+.nav-main .brand-lockup { gap: 7px; }
+.nav-main .brand-copy strong { font-size: 21px; }
+.nav-main .brand-copy { gap: 4px; }
+.nav-main .brand-submark { font-size: 10px; }
+.drawer-brand { margin: 4px 0 24px; }
+.checkout-brand { display: flex; justify-content: center; padding-block: 4px 20px; }
+.not-found-brand { display: flex; justify-content: center; padding-top: 40px; }
+.footer-section > div > .brand-logo { display: inline-flex; width: fit-content; padding-block: 8px; }
+footer { background: #111111; }
+.brand-marathi { font-family: "Noto Sans Devanagari", sans-serif; font-size: 16px; line-height: 1.7; color: #e8e8e8; }
+.footer-brand-line { display: none; }
+.footer-section .button.outline { color: #ffffff; border-color: #6b6b6b; background: transparent; }
+.footer-section .button.outline:hover { color: #111111; background: #fff6db; border-color: #c79100; }
+.brand-loading { min-height: 50dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 24px; text-align: center; color: #111111; font-size: 14px; }
+.brand-loading .brand-icon { width: 56px; height: 56px; flex-basis: 56px; animation: brand-pulse 1.5s ease-in-out infinite; }
+.hero-copy > .brand-eyebrow { font-size: 12px; letter-spacing: .08em; color: #6b6b6b; margin: 0 0 10px; }
+@keyframes brand-pulse { 50% { opacity: .6; transform: scale(.96); } }
+@media (min-width: 1024px) {
+  .nav-main > .brand-logo { flex: 0 0 auto; }
+  .nav-main .brand-icon { width: 40px; height: 40px; flex-basis: 40px; }
+  .nav-main .brand-copy strong { font-size: 28px; }
+  .nav-main .brand-lockup { gap: 10px; }
+}
+@media (max-width: 379px) {
+  .brand-submark, .brand-tagline { display: none; }
+  .nav-main .brand-copy strong { font-size: 20px; }
+  .footer-brand-line { display: block; }
+}
+@media (prefers-reduced-motion: reduce) { .brand-loading .brand-icon { animation: none; } }

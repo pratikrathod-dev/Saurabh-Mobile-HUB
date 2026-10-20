@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Smartphone, Search, Heart, ShoppingBag, Menu, ChevronDown, ArrowUp, Instagram, MapPin, ArrowRight, ShieldCheck, Truck, Gift, Headphones, Home, LayoutGrid, Phone } from "lucide-react";
+import { Search, Heart, ShoppingBag, Menu, ChevronDown, ArrowUp, Instagram, MapPin, ArrowRight, ShieldCheck, Truck, Gift, Headphones, Home, LayoutGrid, Phone } from "lucide-react";
 import { useStore } from "../../context/StoreContext";
 import { products } from "../../data/products";
 import { categories } from "../../data/categories";
@@ -11,13 +11,7 @@ import { formatPrice } from "../../utils/formatPrice";
 import { WhatsAppButton } from "../ui/Common";
 import Modal from "../ui/Modal";
 import ProductImage from "../product/ProductImage";
-
-export function Logo() {
-  return <Link to="/" className="logo" aria-label="Saurabh Mobile Hub home">
-    <span className="logo-icon"><Smartphone size={24} /></span>
-    <span><strong>Saurabh<span className="logo-dot">.</span></strong><small>MOBILE HUB</small></span>
-  </Link>;
-}
+import Logo from "../ui/Logo";
 function SearchBox({ onNavigate = () => {}, autoFocus = false }) {
   const [query, setQuery] = useState(""), [open, setOpen] = useState(false);
   const [recent, setRecent] = useLocalStorage("smh-recent-searches", []);
@@ -77,7 +71,8 @@ export function Header() {
         <button className="icon-button" onClick={() => setDrawer(true)} aria-label={`Shopping bag, ${count} items`}><ShoppingBag size={20} /><b key={count}>{count}</b></button>
       </div>
     </div></header>
-    {menu && <Modal title="Explore Saurabh" drawer side="left" animated onClose={() => setMenu(false)}>
+    {menu && <Modal title={`Explore ${shopInfo.name}`} drawer side="left" animated onClose={() => setMenu(false)}>
+      <div className="drawer-brand" onClick={() => setMenu(false)}><Logo showTagline /></div>
       <SearchBox onNavigate={() => setMenu(false)} />
       <nav className="mobile-nav" aria-label="Mobile navigation">{links}</nav>
       <div className="drawer-social"><WhatsAppButton /><a className="button outline" href={shopInfo.instagram} target="_blank" rel="noreferrer"><Instagram size={18} />Instagram</a></div>
@@ -118,12 +113,12 @@ export function Footer() {
   const phone = shopInfo.phone.replace(/\D/g, "");
   return <><Features /><footer>
     <div className="container footer-grid">
-      <details className="footer-section" open><summary>About the hub</summary><div><Logo /><p>Your friendly neighbourhood mobile store in Digras.</p><a className="social-link" href={shopInfo.instagram} target="_blank" rel="noreferrer"><Instagram size={20}/>Follow our everyday stories</a></div></details>
+      <details className="footer-section" open><summary>About the hub</summary><div><Logo variant="dark" showTagline /><p className="footer-brand-line">{shopInfo.tagline}</p><p className="brand-marathi" lang="mr">{shopInfo.marathiName}</p><p>Your friendly neighbourhood mobile store in Digras.</p><a className="social-link" href={shopInfo.instagram} target="_blank" rel="noreferrer"><Instagram size={20}/>Follow our everyday stories</a></div></details>
       <details className="footer-section"><summary>Quick links</summary><div><Link to="/shop">Shop all</Link><Link to="/wishlist">Wishlist</Link><Link to="/reviews">Customer reviews</Link><Link to="/contact">Visit the store</Link></div></details>
       <details className="footer-section"><summary>Categories</summary><div>{categories.map(c=><Link key={c.slug} to={"/category/"+c.slug}>{c.name}</Link>)}</div></details>
       <details className="footer-section"><summary>Contact</summary><div><p><MapPin size={17}/>{shopInfo.address}</p><p>{shopInfo.hours}</p>{phone.length >= 10 ? <a className="button outline" href={"tel:+"+phone}><Phone size={18}/>Call the shop</a> : <Link className="button outline" to="/contact">Contact the shop</Link>}<WhatsAppButton /></div></details>
     </div>
-    <div className="container footer-bottom"><span>© 2026 Saurabh Mobile Hub</span><span>Frontend demo · Confirm prices and availability in store.</span></div>
+    <div className="container footer-bottom"><span>© {new Date().getFullYear()} {shopInfo.name}</span><span>Frontend demo · Confirm prices and availability in store.</span></div>
   </footer></>;
 }
 export function FloatingActions() {

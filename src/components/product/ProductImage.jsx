@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Smartphone } from "lucide-react";
+import { shopInfo } from "../../data/shopInfo";
 
 /** One image contract for cards, galleries, promotions, and compact bag rows. */
 export default function ProductImage({
@@ -46,10 +47,10 @@ function ImageState({ src, alt, product, className, loading }) {
             <Smartphone size={24} />
           </span>
           <strong aria-hidden="true">
-            {product?.name || "Saurabh Mobile Hub"}
+            {product?.name || shopInfo.name}
           </strong>
           <small aria-hidden="true">
-            Photo coming soon · Saurabh Mobile Hub
+            Photo coming soon · {shopInfo.name}
           </small>
         </div>
       ) : (

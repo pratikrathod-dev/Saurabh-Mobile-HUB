@@ -478,7 +478,6 @@ footer { padding-top: 16px; }
   .hero-controls > div:last-child { gap: 0; }
 }
 .video-card-instagram { min-width: 54px; min-height: 54px; width: 54px; height: 54px; }
-.brand-loader { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 16px; background: #c79100; color: #111; font-size: 32px; font-weight: 700; }
 .page-loading { align-content: center; gap: 16px; }
 .page-enter { animation-duration: 180ms; }
 /* Remove legacy compact-control sizing at its component boundary. */
