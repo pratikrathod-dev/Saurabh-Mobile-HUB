@@ -4195,12 +4195,12 @@ textarea {
   }
 }
 .search-box input {
-  border: 0 !important;
-  background: transparent !important;
-  padding: 0 !important;
-  min-height: 0 !important;
-  border-radius: 0 !important;
-  font-size: 10px !important;
+  border: 0;
+  background: transparent;
+  padding: 10px;
+  min-height: 48px;
+  border-radius: 0;
+  font-size: 16px;
 }
 .search-box input:focus-visible {
   outline-offset: 8px;

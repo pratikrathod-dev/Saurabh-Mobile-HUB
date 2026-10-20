@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Star } from "lucide-react";
 import { useStore } from "../../context/StoreContext";
 import { products } from "../../data/products";
+import { useVideoFeedback } from "../../hooks/useVideoFeedback";
 const labels = ["Poor", "Fair", "Good", "Very Good", "Excellent"];
 export default function ReviewForm({ productId = "" }) {
-  const { setReviews, notify } = useStore();
+  const { setReviews, notify, pendingVideoReviews, setPendingVideoReviews } =
+    useStore();
+  const video = useVideoFeedback();
+  const ratingDrag = useRef(false);
+  const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState(0),
     [hover, setHover] = useState(0),
     [errors, setErrors] = useState({});
@@ -19,6 +24,9 @@ export default function ReviewForm({ productId = "" }) {
     if (!rating) next.rating = "Choose a star rating.";
     if (text.length < 10)
       next.text = "Tell us a little more — at least 10 characters.";
+    if (video.error) next.video = video.error;
+    if (video.checking)
+      next.video = "Please wait while we check the video length.";
     setErrors(next);
     if (Object.keys(next).length) return;
     setReviews((old) => [
@@ -33,8 +41,25 @@ export default function ReviewForm({ productId = "" }) {
       },
       ...old,
     ]);
-    notify("Thank you! Your feedback has been added on this device.");
+    if (video.preview) {
+      const attachment = video.transfer();
+      const pending = {
+        id: crypto.randomUUID(),
+        type: "mp4",
+        customerName: name,
+        caption: text,
+        rating,
+        productId: productId || data.get("productId") || undefined,
+        date: new Date().toISOString(),
+        verified: false,
+        status: "pending",
+        ...attachment,
+      };
+      setPendingVideoReviews((old) => [pending, ...old]);
+      notify("Thanks! Your video will appear after the shop approves it.");
+    } else notify("Thank you! Your feedback has been added on this device.");
     form.reset();
+    setReviewText("");
     setRating(0);
   };
   return (
@@ -55,10 +80,23 @@ export default function ReviewForm({ productId = "" }) {
           aria-label="Your star rating"
           aria-required="true"
           onMouseLeave={() => setHover(0)}
+          onPointerDown={(event) => { ratingDrag.current = true; event.currentTarget.setPointerCapture(event.pointerId); }}
+          onPointerMove={(event) => {
+            if (!ratingDrag.current) return;
+            const button = document.elementFromPoint(event.clientX, event.clientY)?.closest("[data-rating]");
+            if (button && event.currentTarget.contains(button)) setRating(Number(button.dataset.rating));
+          }}
+          onPointerUp={(event) => {
+            const button = document.elementFromPoint(event.clientX, event.clientY)?.closest("[data-rating]");
+            if (button && event.currentTarget.contains(button)) setRating(Number(button.dataset.rating));
+            ratingDrag.current = false;
+          }}
+          onPointerCancel={() => { ratingDrag.current = false; }}
         >
           {labels.map((label, i) => (
             <button
               key={label}
+              data-rating={i + 1}
               type="button"
               role="radio"
               aria-checked={rating === i + 1}
@@ -149,17 +187,89 @@ export default function ReviewForm({ productId = "" }) {
           rows="4"
           placeholder="What made your experience special?"
           minLength="10"
+          maxLength="2000"
+          value={reviewText}
+          onChange={(event) => {
+            setReviewText(event.target.value);
+            event.target.style.height = "auto";
+            event.target.style.height = Math.min(event.target.scrollHeight, 400) + "px";
+          }}
           required
           aria-invalid={!!errors.text}
         />
+        <small className="character-counter">{reviewText.length}/2000 characters</small>
         {errors.text && (
           <span className="form-error" role="alert">
             {errors.text}
           </span>
         )}
       </label>
-      <button className="button" type="submit">
-        Share your feedback <span>↗</span>
+      <fieldset className="video-upload-field">
+        <legend>Add a video (optional)</legend>
+        <label
+          htmlFor={`feedback-video-${productId || "shop"}`}
+          className="sr-only"
+        >
+          Choose an MP4 or MOV feedback video
+        </label>
+        <input
+          ref={video.input}
+          id={`feedback-video-${productId || "shop"}`}
+          type="file"
+          accept=".mp4,.mov,video/mp4,video/quicktime"
+          onChange={video.select}
+          aria-describedby={`video-help-${productId || "shop"}`}
+          aria-invalid={!!video.error}
+        />
+        <p
+          id={`video-help-${productId || "shop"}`}
+          className="video-upload-note"
+        >
+          MP4 or MOV · Up to 30 MB · Up to 30 seconds. Local preview only;
+          nothing is uploaded. Videos need shop approval before appearing.
+        </p>
+        {video.preview && (
+          <div className="video-upload-preview">
+            <video
+              key={video.preview}
+              src={video.preview}
+              controls
+              playsInline
+              preload="metadata"
+              aria-label="Your feedback video preview"
+              onLoadedMetadata={video.metadataLoaded}
+              onError={video.mediaFailed}
+            />
+            <button type="button" className="text-link" onClick={video.clear}>
+              Remove video
+            </button>
+          </div>
+        )}
+        {video.checking && (
+          <p role="status" className="video-upload-note">
+            Checking video length…
+          </p>
+        )}
+        {(video.error || errors.video) && (
+          <p className="form-error" role="alert">
+            {video.error || errors.video}
+          </p>
+        )}
+        {pendingVideoReviews.length > 0 && (
+          <p className="video-upload-note" role="status">
+            {pendingVideoReviews.length} local video{" "}
+            {pendingVideoReviews.length === 1 ? "is" : "are"} awaiting shop
+            approval in this session. This is a demo queue; nothing has been
+            sent.
+          </p>
+        )}
+      </fieldset>
+      <button
+        className="button"
+        type="submit"
+        disabled={video.checking || !!video.error}
+      >
+        Share your feedback
       </button>
     </form>
   );

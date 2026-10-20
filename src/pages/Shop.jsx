@@ -12,6 +12,7 @@ export default function Shop() {
   const { slug } = useParams(),
     [params, setParams] = useSearchParams();
   const [mobile, setMobile] = useState(false),
+    [sortOpen, setSortOpen] = useState(false),
     [loading, setLoading] = useState(true),
     [count, setCount] = useState(12);
   const category = categories.find((c) => c.slug === slug);
@@ -160,7 +161,8 @@ export default function Shop() {
               <SlidersHorizontal size={16} />
               Filters
             </button>
-            <label className="sort-label">
+            <button className="button outline mobile-sort-button" onClick={() => setSortOpen(true)}>Sort <ChevronDown size={16}/></button>
+            <label className="sort-label desktop-sort">
               <span>Sort by:</span>
               <select
                 aria-label="Sort products"
@@ -233,16 +235,20 @@ export default function Shop() {
       {mobile && (
         <Modal
           title="Find your perfect match"
-          drawer
           bottomSheet
+          animated
           onClose={() => setMobile(false)}
         >
           {filterUI}
-          <button className="button full" onClick={() => setMobile(false)}>
-            Show {list.length} products
-          </button>
+          <div className="sheet-footer"><button className="button outline" onClick={clear}>Clear all</button><button className="button" onClick={() => setMobile(false)}>Show {list.length} results</button></div>
         </Modal>
       )}
+      {sortOpen && <Modal title="Sort products" bottomSheet animated onClose={() => setSortOpen(false)}>
+        <fieldset className="sort-options"><legend className="sr-only">Sort order</legend>
+          {[["relevance","Recommended"],["low","Price: low to high"],["high","Price: high to low"],["newest","Newest arrivals"],["rating","Top rated"]].map(([value,label]) =>
+            <label key={value}><input type="radio" name="sort-order" value={value} checked={filters.sort === value} onChange={() => { change("sort",value); setSortOpen(false); }}/>{label}</label>)}
+        </fieldset>
+      </Modal>}
     </div>
   );
 }

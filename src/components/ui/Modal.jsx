@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function Modal({
   title,
@@ -8,18 +9,26 @@ export default function Modal({
   onClose,
   drawer = false,
   bottomSheet = false,
+  animated = false,
+  side = "right",
+  fullScreen = false,
 }) {
   const ref = useRef(null);
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+  const start = useRef(null);
+  const reduced = useReducedMotion();
   useEffect(() => {
     const previous = document.activeElement;
     const old = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    ref.current?.focus();
+    const initial = ref.current?.querySelector('[data-autofocus="true"]');
+    (initial || ref.current)?.focus();
     const key = (event) => {
-      if (event.key === "Escape") onClose();
+      if (event.key === "Escape") closeRef.current();
       if (event.key !== "Tab") return;
       const nodes = ref.current?.querySelectorAll(
-        'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea, summary, [tabindex="0"]',
+        'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea, summary, iframe, video[controls], [tabindex="0"]',
       );
       const first = nodes?.[0],
         last = nodes?.[nodes.length - 1];
@@ -41,15 +50,28 @@ export default function Modal({
       document.removeEventListener("keydown", key);
       previous?.focus();
     };
-  }, [onClose]);
+  }, []);
   return createPortal(
-    <div
-      className={`modal-backdrop ${drawer ? "drawer-backdrop" : ""} ${bottomSheet ? "bottom-sheet" : ""}`}
+    <motion.div
+      initial={animated ? { opacity: 0 } : false}
+      animate={{ opacity: 1 }}
+      exit={animated ? { opacity: 0 } : undefined}
+      transition={{ duration: 0.2 }}
+      className={`modal-backdrop ${drawer ? "drawer-backdrop" : ""} ${bottomSheet ? "bottom-sheet" : ""} ${side === "left" ? "left-drawer-backdrop" : ""} ${fullScreen ? "fullscreen-backdrop" : ""}`}
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <section
+      <motion.section
+        initial={animated ? { opacity: 0, scale: reduced ? 1 : 0.94 } : false}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={animated ? { opacity: 0, scale: reduced ? 1 : 0.96 } : undefined}
+        transition={{ duration: 0.2 }}
+        onPointerDown={(event) => { start.current = event.clientX; }}
+        onPointerUp={(event) => {
+          if (side === "left" && start.current !== null && event.clientX - start.current < -60) onClose();
+          start.current = null;
+        }}
         ref={ref}
         tabIndex={-1}
         role="dialog"
@@ -68,8 +90,8 @@ export default function Modal({
           </button>
         </div>
         {children}
-      </section>
-    </div>,
+      </motion.section>
+    </motion.div>,
     document.body,
   );
 }

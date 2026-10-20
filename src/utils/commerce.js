@@ -24,20 +24,22 @@ export function filterProducts(
     (p) =>
       (!category || p.category === category) &&
       (!brand || p.brand === brand) &&
-      p.price <= Number(max) &&
+      (p.price == null ? Number(max) >= 150000 : p.price <= Number(max)) &&
       p.rating >= Number(rating) &&
       (!stock || p.inStock) &&
       `${p.name} ${p.brand}`.toLowerCase().includes(search.toLowerCase()),
   );
   return [...list].sort((a, b) =>
-    sort === "low"
-      ? a.price - b.price
-      : sort === "high"
-        ? b.price - a.price
-        : sort === "rating"
-          ? b.rating - a.rating
-          : sort === "newest"
-            ? Number(b.tags.includes("new")) - Number(a.tags.includes("new"))
-            : 0,
+    (sort === "low" || sort === "high") && (a.price == null || b.price == null)
+      ? Number(a.price == null) - Number(b.price == null)
+      : sort === "low"
+        ? a.price - b.price
+        : sort === "high"
+          ? b.price - a.price
+          : sort === "rating"
+            ? b.rating - a.rating
+            : sort === "newest"
+              ? Number(b.tags.includes("new")) - Number(a.tags.includes("new"))
+              : 0,
   );
 }

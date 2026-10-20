@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import {
-  ArrowRight,
-  ArrowUpRight,
   ChevronLeft,
   ChevronRight,
-  MapPin,
-  ShieldCheck,
   Smartphone,
   Tablet,
   Headphones,
@@ -15,31 +11,33 @@ import {
   Zap,
   Layers,
   AudioLines,
-  Quote,
+  Pause,
+  Play,
 } from "lucide-react";
 import { products, brands } from "../data/products";
 import { categories } from "../data/categories";
 import { useStore } from "../context/StoreContext";
 import ProductCard from "../components/product/ProductCard";
+import ProductImage from "../components/product/ProductImage";
 import { SectionTitle, Stars } from "../components/ui/Common";
-import InstagramReviews from "../components/reviews/InstagramReviews";
+import VideoReviewCarousel from "../components/reviews/VideoReviewCarousel";
 const slides = [
   {
-    eyebrow: "YOUR NEXT CHAPTER STARTS HERE",
+    eyebrow: "MEET THE NEW IPHONE 18 PRO",
     title: (
       <>
-        A little upgrade.
-        <br />A lot more <span>possibilities.</span>
+        iPhone 18 Pro.
+        <br />
+        Your next <span>big upgrade.</span>
       </>
     ),
     description:
-      "The phones you love. The prices you’ll love even more.\nDiscover your perfect match at your neighbourhood mobile hub.",
-    cta: "Find your next phone",
-    to: "/category/smartphones",
-    image: "/assets/phone-stone.svg",
-    image2: "/assets/phone-blue.svg",
-    label: "An upgrade worth making.",
-    tag: "The latest. The greatest.",
+      "Discover a bold new look in Burgundy.\nExplore iPhone 18 Pro and ask us about local pricing and availability.",
+    cta: "Explore iPhone 18 Pro",
+    to: "/product/iphone-18-pro",
+    product: products.find((p) => p.id === "iphone-18-pro"),
+    label: "A closer look at Pro.",
+    tag: "Burgundy. Beautifully Pro.",
   },
   {
     eyebrow: "GOOD SOUND. GREAT DAYS.",
@@ -53,8 +51,7 @@ const slides = [
       "From your first playlist to your last call of the day.\nFind audio essentials that keep up with you.",
     cta: "Find your sound",
     to: "/category/earbuds",
-    image: "/assets/earbuds-stone.svg",
-    image2: "/assets/headphones-stone.svg",
+    product: products.find((p) => p.id === "airpods"),
     label: "Tune into something better.",
     tag: "Every beat. Every day.",
   },
@@ -68,38 +65,48 @@ const slides = [
       </>
     ),
     description:
-      "Fast chargers, dependable power banks, and everyday extras.\nEverything your phone needs, all in one place.",
+      "Dependable charging for everyday life.\nExplore the Apple 20W USB-C adapter, right here at the hub.",
     cta: "Explore accessories",
-    to: "/category/power-banks",
-    image: "/assets/powerbank-mint.svg",
-    image2: "/assets/charger-stone.svg",
+    to: "/category/chargers-cables",
+    product: products.find((p) => p.id === "charger-20"),
     label: "Ready for the everyday.",
     tag: "Stay connected.",
   },
 ];
 function Hero() {
-  const [index, setIndex] = useState(0),
-    [paused, setPaused] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [stopped, setStopped] = useState(false);
+  const [hidden, setHidden] = useState(document.hidden);
+  const hero = useRef(null);
+  const visible = useInView(hero, { amount: 0.25 });
   const reduced = useReducedMotion();
   const [touch, setTouch] = useState(null);
+  const paused =
+    hovered || focused || stopped || hidden || !visible || touch !== null || reduced;
   useEffect(() => {
-    if (paused || reduced) return;
-    const timer = setInterval(
+    const update = () => setHidden(document.hidden);
+    document.addEventListener("visibilitychange", update);
+    return () => document.removeEventListener("visibilitychange", update);
+  }, []);
+  useEffect(() => {
+    if (paused) return;
+    const timer = setTimeout(
       () => setIndex((i) => (i + 1) % slides.length),
-      6500,
+      4500,
     );
-    return () => clearInterval(timer);
-  }, [paused, reduced]);
+    return () => clearTimeout(timer);
+  }, [paused, index]);
   const s = slides[index];
   const move = (n) => setIndex((i) => (i + n + slides.length) % slides.length);
   return (
     <section
       className="hero"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
+      ref={hero}
+      onFocus={() => setFocused(true)}
       onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false);
+        if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false);
       }}
       onTouchStart={(e) => setTouch(e.touches[0].clientX)}
       onTouchEnd={(e) => {
@@ -110,6 +117,7 @@ function Hero() {
           move(e.changedTouches[0].clientX < touch ? 1 : -1);
         setTouch(null);
       }}
+      onTouchCancel={() => setTouch(null)}
       aria-roledescription="carousel"
       aria-label="Featured collections"
     >
@@ -121,47 +129,26 @@ function Hero() {
           </p>
           <h1>{s.title}</h1>
           <p className="hero-description">{s.description}</p>
-          <Link className="button" to={s.to}>
+          <Link
+            className="button"
+            to={s.to}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+          >
             {s.cta}
-            <ArrowUpRight size={18} />
           </Link>
-          <div className="hero-proof">
-            <div className="avatar-stack">
-              <span>RP</span>
-              <span>SD</span>
-              <span>AJ</span>
-              <span>+</span>
-            </div>
-            <span>
-              <Stars />
-              <small>Your local store. A personal touch.</small>
-            </span>
-          </div>
         </div>
         <div className={`hero-art slide-${index}`}>
           <span className="hero-orbit orbit-one" />
           <span className="hero-orbit orbit-two" />
           <span className="art-word">UPGRADE</span>
-          <img
-            className="hero-phone back"
-            src={s.image2}
-            alt="Explore our collection"
-          />
-          <img
-            className="hero-phone front"
-            src={s.image}
-            alt={
-              index === 0
-                ? "Premium smartphone in natural titanium"
-                : index === 1
-                  ? "Wireless earbuds"
-                  : "Portable power bank"
-            }
+          <ProductImage
+            key={s.product.id}
+            product={s.product}
+            className="hero-real-image"
+            loading="eager"
           />
           <div className="hero-note">
-            <span className="note-icon">
-              <ShieldCheck size={22} />
-            </span>
             <span>
               <strong>{s.label}</strong>
               <small>Genuine products. Honest advice.</small>
@@ -169,12 +156,13 @@ function Hero() {
           </div>
           <span className="hero-art-label">
             {s.tag}
-            <span>↗</span>
           </span>
-          <span className="sparkle sparkle-one">✳</span>
-          <span className="sparkle sparkle-two">+</span>
         </div>
-        <div className="hero-controls">
+        <div
+          className="hero-controls"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
           <div className="slide-dots">
             {slides.map((_, i) => (
               <button
@@ -191,6 +179,20 @@ function Hero() {
               0{index + 1}
               <span className="muted"> / 03</span>
             </span>
+            {!reduced && (
+              <button
+                className="round-button"
+                aria-label={
+                  stopped ? "Resume automatic slides" : "Pause automatic slides"
+                }
+                onClick={() => {
+                  setStopped((value) => !value);
+                  setFocused(false);
+                }}
+              >
+                {stopped ? <Play size={13} /> : <Pause size={13} />}
+              </button>
+            )}
             <button
               className="round-button"
               aria-label="Previous slide"
@@ -238,7 +240,6 @@ export default function Home() {
       <Hero />
       <div className="store-note container">
         <span>
-          <MapPin size={14} />
           Rooted in Digras. Ready for your next upgrade.
         </span>
         <span>Great phones. Genuine advice. A better experience.</span>
@@ -254,10 +255,12 @@ export default function Home() {
             </h2>
             <span>
               Explore phone deals
-              <ArrowUpRight size={16} />
             </span>
           </div>
-          <img src="/assets/phone-blue.svg" alt="Blue smartphone" />
+          <ProductImage
+            product={products.find((p) => p.id === "samsung-s24")}
+            className="promo-real-image"
+          />
         </Link>
         <Link to="/category/earbuds" className="promo-card promo-yellow">
           <div>
@@ -269,10 +272,12 @@ export default function Home() {
             </h2>
             <span>
               Find your sound
-              <ArrowUpRight size={16} />
             </span>
           </div>
-          <img src="/assets/earbuds-stone.svg" alt="Wireless earbuds" />
+          <ProductImage
+            product={products.find((p) => p.id === "airpods")}
+            className="promo-real-image"
+          />
         </Link>
         <Link
           to="/category/chargers-cables"
@@ -286,10 +291,12 @@ export default function Home() {
             </h2>
             <span>
               Shop accessories
-              <ArrowUpRight size={16} />
             </span>
           </div>
-          <img src="/assets/charger-stone.svg" alt="Compact charger" />
+          <ProductImage
+            product={products.find((p) => p.id === "charger-20")}
+            className="promo-real-image"
+          />
         </Link>
       </section>
       <section className="section container categories-section">
@@ -394,7 +401,6 @@ export default function Home() {
             </p>
             <Link className="button" to="/contact">
               Visit the shop
-              <ArrowUpRight size={17} />
             </Link>
             <small>Ask in store for current offers. Terms apply.</small>
           </div>
@@ -404,9 +410,12 @@ export default function Home() {
               <br />
               THINGS
               <br />
-              <span>START HERE ↗</span>
+              <span>START HERE</span>
             </div>
-            <img src="/assets/phone-peach.svg" alt="Your next phone awaits" />
+            <ProductImage
+              product={products.find((p) => p.id === "vivo-v30")}
+              className="visit-real-image"
+            />
           </div>
         </div>
       </section>
@@ -442,7 +451,6 @@ export default function Home() {
                 <article className="review-card" key={r.id}>
                   <div className="review-top">
                     <Stars rating={r.rating} />
-                    <Quote size={25} strokeWidth={1} />
                   </div>
                   <p>“{r.text}”</p>
                   <div className="review-author">
@@ -464,7 +472,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <InstagramReviews />
+      <VideoReviewCarousel />
     </>
   );
 }

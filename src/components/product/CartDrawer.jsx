@@ -14,6 +14,7 @@ export default function CartDrawer() {
     <Modal
       title={`Your bag (${cart.reduce((n, x) => n + x.qty, 0)})`}
       drawer
+      animated
       onClose={close}
     >
       {cart.length ? (

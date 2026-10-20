@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { Header, Footer, FloatingActions } from "./components/layout/Layout";
+import { Header, Footer, FloatingActions, BottomNavigation } from "./components/layout/Layout";
 import CartDrawer from "./components/product/CartDrawer";
 import { Empty } from "./components/ui/Common";
 const Home = lazy(() => import("./pages/Home"));
@@ -15,7 +15,7 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
     document
-      .querySelectorAll("details[open]")
+      .querySelectorAll(".desktop-nav details[open]")
       .forEach((d) => d.removeAttribute("open"));
   }, [location.pathname]);
   return (
@@ -25,7 +25,8 @@ export default function App() {
         <Suspense
           fallback={
             <div className="container page-loading" role="status">
-              Getting things ready…
+              <span className="brand-loader" aria-hidden="true">S.</span>
+              <span>Getting your next upgrade ready…</span>
             </div>
           }
         >
@@ -57,6 +58,7 @@ export default function App() {
       <Footer />
       <CartDrawer />
       <FloatingActions />
+      <BottomNavigation />
     </>
   );
 }

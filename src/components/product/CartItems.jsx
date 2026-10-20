@@ -3,6 +3,7 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 import { useStore } from "../../context/StoreContext";
 import { products } from "../../data/products";
 import { formatPrice } from "../../utils/formatPrice";
+import ProductImage from "./ProductImage";
 export default function CartItems({ onNavigate = () => {} }) {
   const { cart, updateQty, remove } = useStore();
   return (
@@ -13,7 +14,7 @@ export default function CartItems({ onNavigate = () => {} }) {
         return (
           <article className="cart-item" key={`${item.id}-${item.color}`}>
             <Link to={`/product/${p.id}`} onClick={onNavigate}>
-              <img src={p.images[0]} alt={p.name} />
+              <ProductImage product={p} className="cart-product-image" />
             </Link>
             <div>
               <small className="brand-label">{p.brand}</small>

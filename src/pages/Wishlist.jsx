@@ -28,7 +28,7 @@ export default function Wishlist() {
               <ProductCard product={p} />
               <button
                 className="button outline full move-cart"
-                disabled={!p.inStock}
+                disabled={!p.inStock || p.enquiryOnly}
                 onClick={() => {
                   toggleWishlist(p.id);
                   add(p);

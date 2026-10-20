@@ -1,0 +1,292 @@
+{
+  "iphone-15": {
+    "page": "https://www.gsmarena.com/apple_iphone_15-pictures-12559.php",
+    "images": [
+      {
+        "file": "iphone-15-1.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-1.jpg",
+        "originalSize": [
+          570,
+          650
+        ],
+        "bytes": 38116
+      },
+      {
+        "file": "iphone-15-2.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-2.jpg",
+        "originalSize": [
+          710,
+          486
+        ],
+        "bytes": 26690
+      }
+    ]
+  },
+  "iphone-15-pro": {
+    "page": "https://www.gsmarena.com/apple_iphone_15_pro-pictures-12557.php",
+    "images": [
+      {
+        "file": "iphone-15-pro-1.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-1.jpg",
+        "originalSize": [
+          627,
+          650
+        ],
+        "bytes": 100960
+      },
+      {
+        "file": "iphone-15-pro-2.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-2.jpg",
+        "originalSize": [
+          710,
+          494
+        ],
+        "bytes": 44254
+      }
+    ]
+  },
+  "samsung-galaxy-s24": {
+    "page": "https://www.gsmarena.com/samsung_galaxy_s24-pictures-12773.php",
+    "images": [
+      {
+        "file": "samsung-galaxy-s24-1.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-5g-sm-s921-1.jpg",
+        "originalSize": [
+          710,
+          629
+        ],
+        "bytes": 33726
+      },
+      {
+        "file": "samsung-galaxy-s24-2.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-5g-sm-s921-2.jpg",
+        "originalSize": [
+          646,
+          650
+        ],
+        "bytes": 15230
+      }
+    ]
+  },
+  "samsung-galaxy-a55": {
+    "page": "https://www.gsmarena.com/samsung_galaxy_a55-pictures-12824.php",
+    "images": [
+      {
+        "file": "samsung-galaxy-a55-1.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a55-1.jpg",
+        "originalSize": [
+          710,
+          614
+        ],
+        "bytes": 46472
+      },
+      {
+        "file": "samsung-galaxy-a55-2.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a55-2.jpg",
+        "originalSize": [
+          710,
+          415
+        ],
+        "bytes": 19038
+      }
+    ]
+  },
+  "oneplus-12r": {
+    "page": "https://www.gsmarena.com/oneplus_12r-pictures-12727.php",
+    "images": [
+      {
+        "file": "oneplus-12r-1.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-12r-1.jpg",
+        "originalSize": [
+          665,
+          770
+        ],
+        "bytes": 41654
+      },
+      {
+        "file": "oneplus-12r-2.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-12r-2.jpg",
+        "originalSize": [
+          690,
+          650
+        ],
+        "bytes": 54556
+      }
+    ]
+  },
+  "vivo-v30": {
+    "page": "https://www.gsmarena.com/vivo_v30-pictures-12818.php",
+    "images": [
+      {
+        "file": "vivo-v30-1.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v30-1.jpg",
+        "originalSize": [
+          444,
+          572
+        ],
+        "bytes": 35256
+      },
+      {
+        "file": "vivo-v30-2.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v30-10.jpg",
+        "originalSize": [
+          710,
+          550
+        ],
+        "bytes": 37230
+      }
+    ]
+  },
+  "xiaomi-14": {
+    "page": "https://www.gsmarena.com/xiaomi_14-pictures-12626.php",
+    "images": [
+      {
+        "file": "xiaomi-14-1.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-14-01.jpg",
+        "originalSize": [
+          710,
+          693
+        ],
+        "bytes": 28444
+      },
+      {
+        "file": "xiaomi-14-2.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-14-02.jpg",
+        "originalSize": [
+          710,
+          615
+        ],
+        "bytes": 30000
+      }
+    ]
+  },
+  "ipad-10th-gen": {
+    "page": "https://www.gsmarena.com/apple_ipad_%282022%29-pictures-11941.php",
+    "images": [
+      {
+        "file": "ipad-10th-gen-1.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/apple/apple-ipad-10-2022-0.jpg",
+        "originalSize": [
+          573,
+          650
+        ],
+        "bytes": 21660
+      },
+      {
+        "file": "ipad-10th-gen-2.webp",
+        "url": "https://fdn2.gsmarena.com/vv/pics/apple/apple-ipad-10-2022-1.jpg",
+        "originalSize": [
+          710,
+          584
+        ],
+        "bytes": 24674
+      }
+    ]
+  },
+  "airpods-pro-2": {
+    "page": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MTJV3?wid=800&hei=800&fmt=png-alpha",
+    "images": [
+      {
+        "file": "airpods-pro-2-1.webp",
+        "url": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MTJV3?wid=800&hei=800&fmt=png-alpha",
+        "originalSize": [
+          800,
+          800
+        ],
+        "bytes": 7238
+      }
+    ]
+  },
+  "apple-20w-usb-c-adapter": {
+    "page": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MHJE3?wid=800&hei=800&fmt=png-alpha",
+    "images": [
+      {
+        "file": "apple-20w-usb-c-adapter-1.webp",
+        "url": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MHJE3?wid=800&hei=800&fmt=png-alpha",
+        "originalSize": [
+          800,
+          800
+        ],
+        "bytes": 3460
+      }
+    ]
+  },
+  "iphone-18-pro": {
+    "page": "https://www.apple.com/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/",
+    "provenance": "Eight product and feature images supplied by the user. No generated imagery.",
+    "images": [
+      {
+        "file": "iphone-18-pro-1.webp",
+        "url": "user-supplied attachment",
+        "originalSize": [
+          522,
+          522
+        ],
+        "bytes": 17198
+      },
+      {
+        "file": "iphone-18-pro-2.webp",
+        "url": "user-supplied attachment",
+        "originalSize": [
+          1500,
+          1500
+        ],
+        "bytes": 27934
+      },
+      {
+        "file": "iphone-18-pro-3.webp",
+        "url": "user-supplied attachment",
+        "originalSize": [
+          1500,
+          1500
+        ],
+        "bytes": 86364
+      },
+      {
+        "file": "iphone-18-pro-4.webp",
+        "url": "user-supplied attachment",
+        "originalSize": [
+          1500,
+          1500
+        ],
+        "bytes": 17578
+      },
+      {
+        "file": "iphone-18-pro-5.webp",
+        "url": "user-supplied attachment",
+        "originalSize": [
+          1500,
+          1500
+        ],
+        "bytes": 34386
+      },
+      {
+        "file": "iphone-18-pro-6.webp",
+        "url": "user-supplied attachment",
+        "originalSize": [
+          1500,
+          1500
+        ],
+        "bytes": 31616
+      },
+      {
+        "file": "iphone-18-pro-7.webp",
+        "url": "user-supplied attachment",
+        "originalSize": [
+          1500,
+          1500
+        ],
+        "bytes": 17816
+      },
+      {
+        "file": "iphone-18-pro-8.webp",
+        "url": "user-supplied attachment",
+        "originalSize": [
+          1500,
+          1500
+        ],
+        "bytes": 15656
+      }
+    ]
+  }
+}

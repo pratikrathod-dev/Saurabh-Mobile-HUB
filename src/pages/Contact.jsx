@@ -8,6 +8,7 @@ import { WhatsAppButton } from "../components/ui/Common";
 export default function Contact() {
   const { notify } = useStore();
   const [errors, setErrors] = useState({});
+  const [mapOpen, setMapOpen] = useState(false);
   const submit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget),
@@ -60,6 +61,7 @@ export default function Contact() {
             details before sharing publicly.
           </p>
           <WhatsAppButton />
+          {shopInfo.contactConfigured && <a className="button outline" href={"tel:+" + shopInfo.phone.replace(/\D/g, "")}><Phone size={18}/>Call the shop</a>}
           <a
             className="text-link"
             href={shopInfo.instagram}
@@ -96,6 +98,7 @@ export default function Contact() {
               <input
                 name="phone"
                 type="tel"
+                inputMode="numeric"
                 autoComplete="tel-national"
                 required
                 aria-invalid={!!errors.phone}
@@ -128,25 +131,19 @@ export default function Contact() {
           </button>
         </form>
       </div>
-      <section className="map-placeholder" aria-label="Shop map placeholder">
-        <div className="map-roads" />
-        <div>
-          <span>
-            <MapPin size={32} />
-          </span>
+      <section className="contact-map" aria-label="Digras area map">
           <h2>Find us in Digras.</h2>
-          <p>Maharashtra · Your friendly neighbourhood mobile store</p>
+          <p>Area map. The exact shop pin is still to be confirmed.</p>
+          {mapOpen ? <iframe title="Digras, Maharashtra area map" loading="lazy" src="https://maps.google.com/maps?q=Digras%20Maharashtra&output=embed" referrerPolicy="no-referrer-when-downgrade"/> : <button className="button outline" onClick={() => setMapOpen(true)}><MapPin size={20}/>Load area map</button>}
           <a
             className="button outline"
             href="https://www.google.com/maps/search/?api=1&query=Digras+Maharashtra"
             target="_blank"
             rel="noreferrer"
           >
-            Explore Digras on Google Maps
+            Get directions to Digras
             <ArrowUpRight size={16} />
           </a>
-          <small>Map placeholder · Exact shop pin to be confirmed</small>
-        </div>
       </section>
     </div>
   );

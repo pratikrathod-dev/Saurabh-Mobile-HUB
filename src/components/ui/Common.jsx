@@ -29,7 +29,6 @@ export const SectionTitle = ({
       (link && (
         <Link className="text-link" to={to}>
           {link}
-          <ArrowRight size={16} />
         </Link>
       ))}
   </div>
