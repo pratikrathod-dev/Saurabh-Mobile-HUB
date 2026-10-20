@@ -24,6 +24,9 @@ footer { background: #111111; }
 .footer-section .button.outline:hover { color: #111111; background: #fff6db; border-color: #c79100; }
 .brand-loading { min-height: 50dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 24px; text-align: center; color: #111111; font-size: 14px; }
 .brand-loading .brand-icon { width: 56px; height: 56px; flex-basis: 56px; animation: brand-pulse 1.5s ease-in-out infinite; }
+.brand-error { min-height: 100dvh; }
+.brand-error h1 { font-size: 24px; }
+.brand-error .brand-icon { animation: none; }
 .hero-copy > .brand-eyebrow { font-size: 12px; letter-spacing: .08em; color: #6b6b6b; margin: 0 0 10px; }
 @keyframes brand-pulse { 50% { opacity: .6; transform: scale(.96); } }
 @media (min-width: 1024px) {
