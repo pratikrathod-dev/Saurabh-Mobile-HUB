@@ -53,7 +53,7 @@ function ProductContent({ p }) {
       </div>
       <div className="detail-copy">
         <p className="eyebrow">{p.brand} · SELECTED AT THE HUB</p><h1>{p.name}</h1>
-        <div className="rating-line">{p.reviewCount>0 && <><Stars rating={p.rating}/><strong>{p.rating}</strong></>}<a className="subtle-link" href="#product-reviews" onClick={() => { const details = document.getElementById("product-reviews"); if(details) details.open = true; }}>Read reviews ({productReviews.length})</a></div>
+        <div className="rating-line">{p.reviewCount>0 && <><Stars rating={p.rating}/><strong>{p.rating}</strong></>}<a className="subtle-link" href="#product-reviews" onClick={event => { event.preventDefault(); const details = document.getElementById("product-reviews"); if(details) { details.open = true; details.scrollIntoView({block:"start"}); details.querySelector("summary")?.focus({preventScroll:true}); } }}>Read reviews ({productReviews.length})</a></div>
         <div className="detail-price"><span>{formatPrice(p.price)}</span>{p.oldPrice!=null && <><del>{formatPrice(p.oldPrice)}</del><b>Save {Math.round((1-p.price/p.oldPrice)*100)}%</b></>}</div>
         <p className="demo-notice">{p.enquiryOnly?"Ask the shop about current pricing and variants.":"Demo price. Confirm current price in store."}</p>
         <p className={p.enquiryOnly?"enquiry-status":p.inStock?"stock-status":"out-stock"}>{p.enquiryOnly?"Check local availability":p.inStock?"In stock":"Currently unavailable"}</p>

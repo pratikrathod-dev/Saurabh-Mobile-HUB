@@ -11,7 +11,9 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. For a production build:
+Open the local URL printed by Vite, normally
+`http://127.0.0.1:5173/Saurabh-Mobile-HUB/`. Navigation uses hash URLs such as
+`#/shop`, so page refreshes work on GitHub Pages. For a production build:
 
 ```sh
 npm test
@@ -106,7 +108,32 @@ Opening hours are displayed as Monday–Saturday. Seven-day support refers to on
 
 ## Deploy
 
+### GitHub Pages
+
+The actual connected repository is `pratikrathod-dev/Saurabh-Mobile-HUB`, so
+`vite.config.js` uses `base: "/Saurabh-Mobile-HUB/"` (matching its capitalization).
+The app uses `HashRouter`; public images, videos and the logo use
+`src/utils/publicAsset.js`, which prefixes URLs with `import.meta.env.BASE_URL`.
+Compile-time `import.meta.glob` paths still reference `/public/`; their resulting
+runtime asset URLs include the configured base.
+
+When ready to publish, select **Settings → Pages → Build and deployment →
+Source: GitHub Actions** in the repository. After these changes are pushed to
+`main`, `.github/workflows/deploy.yml` installs with `npm ci`, builds with Node
+20, uploads `dist`, and deploys it to the `github-pages` environment. It also
+supports manual runs from Actions. Expected URL after a successful deployment:
+`https://pratikrathod-dev.github.io/Saurabh-Mobile-HUB/`.
+
+This setup alone does not publish anything. No push or remote Pages settings
+change is needed for local verification. If the repository is renamed, update
+`base` to match before rebuilding. See the
+[Vite Pages guide](https://vite.dev/guide/static-deploy.html#github-pages) and
+[GitHub Pages workflow guide](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+
 ### Vercel
+
+For root-domain hosting instead of GitHub Pages, change Vite's `base` back to
+`"/"` before building.
 
 Import the repository, select **Vite**, use `npm run build`, and set output to `dist`. `vercel.json` supplies a history-route fallback so direct visits to `/product/...`, `/reviews`, etc. work.
 

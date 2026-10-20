@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { shopInfo } from "../../data/shopInfo";
+import { publicAsset } from "../../utils/publicAsset";
 
 export function BrandIcon({ className = "" }) {
-  return <img className={`brand-icon ${className}`} src="/favicon.svg" width="40" height="40" alt="" aria-hidden="true" />;
+  return <img className={`brand-icon ${className}`} src={publicAsset("favicon.svg")} width="40" height="40" alt="" aria-hidden="true" />;
 }
 
 /** Light surfaces use light; dark surfaces use dark (white wordmark). */

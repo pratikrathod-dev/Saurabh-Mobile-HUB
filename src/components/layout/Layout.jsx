@@ -58,7 +58,7 @@ export function Header() {
   </>;
   const count = cart.reduce((n,x) => n + x.qty, 0);
   return <>
-    <a className="skip-link" href="#main">Skip to content</a>
+    <a className="skip-link" href="#main" onClick={event => { event.preventDefault(); const main = document.getElementById("main"); main?.focus(); main?.scrollIntoView(); }}>Skip to content</a>
     <div className="announcement"><div className="container"><span>Open Mon–Sat, 10am–9pm</span><span>Free screen guard with every phone</span></div></div>
     <header className="header"><div className="container nav-main">
       <button className="icon-button mobile-menu-button" onClick={() => setMenu(true)} aria-label="Open menu"><Menu size={21} /></button>

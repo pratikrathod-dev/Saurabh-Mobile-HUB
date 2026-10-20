@@ -1,3 +1,4 @@
+import { publicAsset } from "../utils/publicAsset.js";
 import { shopInfo } from "./shopInfo.js";
 // Real model photos, with the iPhone 18 Pro gallery supplied by the user.
 // See IMAGES.md and public/images/products/sources.json for provenance.
@@ -15,14 +16,14 @@ export const products = [
     rating: 0,
     reviewCount: 0,
     images: [
-      "/images/products/iphone-18-pro-1.webp",
-      "/images/products/iphone-18-pro-2.webp",
-      "/images/products/iphone-18-pro-3.webp",
-      "/images/products/iphone-18-pro-4.webp",
-      "/images/products/iphone-18-pro-5.webp",
-      "/images/products/iphone-18-pro-6.webp",
-      "/images/products/iphone-18-pro-7.webp",
-      "/images/products/iphone-18-pro-8.webp",
+      publicAsset("images/products/iphone-18-pro-1.webp"),
+      publicAsset("images/products/iphone-18-pro-2.webp"),
+      publicAsset("images/products/iphone-18-pro-3.webp"),
+      publicAsset("images/products/iphone-18-pro-4.webp"),
+      publicAsset("images/products/iphone-18-pro-5.webp"),
+      publicAsset("images/products/iphone-18-pro-6.webp"),
+      publicAsset("images/products/iphone-18-pro-7.webp"),
+      publicAsset("images/products/iphone-18-pro-8.webp"),
     ],
     imageAlts: [
       "Apple iPhone 18 Pro, Burgundy front and back view",
@@ -62,8 +63,8 @@ export const products = [
     rating: 4.8,
     reviewCount: 24,
     images: [
-      "/images/products/iphone-15-1.webp",
-      "/images/products/iphone-15-2.webp",
+      publicAsset("images/products/iphone-15-1.webp"),
+      publicAsset("images/products/iphone-15-2.webp"),
     ],
     description:
       `Meet the Apple iPhone 15. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
@@ -98,8 +99,8 @@ export const products = [
     rating: 4.7,
     reviewCount: 31,
     images: [
-      "/images/products/samsung-galaxy-s24-1.webp",
-      "/images/products/samsung-galaxy-s24-2.webp",
+      publicAsset("images/products/samsung-galaxy-s24-1.webp"),
+      publicAsset("images/products/samsung-galaxy-s24-2.webp"),
     ],
     description:
       `Meet the Samsung Galaxy S24. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
@@ -135,8 +136,8 @@ export const products = [
     rating: 4.6,
     reviewCount: 38,
     images: [
-      "/images/products/oneplus-12r-1.webp",
-      "/images/products/oneplus-12r-2.webp",
+      publicAsset("images/products/oneplus-12r-1.webp"),
+      publicAsset("images/products/oneplus-12r-2.webp"),
     ],
     description:
       `Meet the OnePlus 12R. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
@@ -171,8 +172,8 @@ export const products = [
     rating: 4.9,
     reviewCount: 45,
     images: [
-      "/images/products/vivo-v30-1.webp",
-      "/images/products/vivo-v30-2.webp",
+      publicAsset("images/products/vivo-v30-1.webp"),
+      publicAsset("images/products/vivo-v30-2.webp"),
     ],
     description:
       `Meet the Vivo V30 5G. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
@@ -207,8 +208,8 @@ export const products = [
     rating: 4.8,
     reviewCount: 52,
     images: [
-      "/images/products/iphone-15-pro-1.webp",
-      "/images/products/iphone-15-pro-2.webp",
+      publicAsset("images/products/iphone-15-pro-1.webp"),
+      publicAsset("images/products/iphone-15-pro-2.webp"),
     ],
     description:
       `Meet the Apple iPhone 15 Pro. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
@@ -244,8 +245,8 @@ export const products = [
     rating: 4.7,
     reviewCount: 59,
     images: [
-      "/images/products/samsung-galaxy-a55-1.webp",
-      "/images/products/samsung-galaxy-a55-2.webp",
+      publicAsset("images/products/samsung-galaxy-a55-1.webp"),
+      publicAsset("images/products/samsung-galaxy-a55-2.webp"),
     ],
     description:
       `Meet the Samsung Galaxy A55. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
@@ -281,8 +282,8 @@ export const products = [
     rating: 4.6,
     reviewCount: 66,
     images: [
-      "/images/products/xiaomi-14-1.webp",
-      "/images/products/xiaomi-14-2.webp",
+      publicAsset("images/products/xiaomi-14-1.webp"),
+      publicAsset("images/products/xiaomi-14-2.webp"),
     ],
     description:
       `Meet the Xiaomi 14. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
@@ -317,8 +318,8 @@ export const products = [
     rating: 4.6,
     reviewCount: 122,
     images: [
-      "/images/products/ipad-10th-gen-1.webp",
-      "/images/products/ipad-10th-gen-2.webp",
+      publicAsset("images/products/ipad-10th-gen-1.webp"),
+      publicAsset("images/products/ipad-10th-gen-2.webp"),
     ],
     description:
       `Meet the Apple iPad 10th Gen. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
@@ -348,7 +349,7 @@ export const products = [
     tone: "stone",
     rating: 4.9,
     reviewCount: 157,
-    images: ["/images/products/apple-20w-usb-c-adapter-1.webp"],
+    images: [publicAsset("images/products/apple-20w-usb-c-adapter-1.webp")],
     description:
       `Meet the 20W USB-C Adapter. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
@@ -376,7 +377,7 @@ export const products = [
     tone: "stone",
     rating: 4.6,
     reviewCount: 206,
-    images: ["/images/products/airpods-pro-2-1.webp"],
+    images: [publicAsset("images/products/airpods-pro-2-1.webp")],
     description:
       `Meet the Apple AirPods Pro 2. Thoughtfully selected for everyday performance, dependable quality, and a little more joy in your day. Visit ${shopInfo.name} to explore it in person and confirm current pricing and availability.`,
     specs: {
